@@ -1,37 +1,37 @@
 $(document).ready(function() {
-	slideshow.initialize();
+	gallery.initialize();
 });
 
-var slideshow = {
+var gallery = {
 	initialize: function() {
-		// set up slideshow markup and controls
-		$( 'body' ).append( '<div id="slideshow-wrapper"></div>' );
-		slideshowWrapper = $( '#slideshow-wrapper' );
-		slideshowWrapper.hide();
-		slideshowWrapper.click(function(){
+		// set up gallery markup and controls
+		$( 'body' ).append( '<div id="gallery-wrapper"></div>' );
+		galleryWrapper = $( '#gallery-wrapper' );
+		galleryWrapper.hide();
+		galleryWrapper.click(function(){
 			$( this ).find( 'img' ).remove();
 			$( this ).hide();
 		});
-		slideshowWrapper.append( '<div id="prev-slide" data-title="Previous Image" data-placement="right"><div class="triangle-left"></div></div><div id="next-slide" data-title="Next Image" data-placement="left"><div class="triangle-right"></div></div>' );
+		galleryWrapper.append( '<div id="prev-slide" data-title="Previous Image" data-placement="right"><div class="triangle-left"></div></div><div id="next-slide" data-title="Next Image" data-placement="left"><div class="triangle-right"></div></div>' );
 		var prevSlide = $( '#prev-slide' ),
 			nextSlide = $( '#next-slide' );
 		// prevSlide.tooltip(); //optional tooltip
 		prevSlide.click( function(e) {
 			e.stopPropagation();
-			slideshow.doSlide( 'prev' );
+			gallery.doSlide( 'prev' );
 		});
 		// nextSlide.tooltip(); //optional tooltip
 		nextSlide.click( function(e) {
 			e.stopPropagation();
-			slideshow.doSlide( 'next' );
+			gallery.doSlide( 'next' );
 		});
-		slideshowWrapper.append( '<div id="slideshow-close" data-title="Close the slideshow." data-placement="left">x</div>' );
-		var closeSlide = $( '#slideshow-close' );
+		galleryWrapper.append( '<div id="gallery-close" data-title="Close the gallery." data-placement="left">x</div>' );
+		var closeSlide = $( '#gallery-close' );
 		closeSlide.tooltip();
 		closeSlide.click( function() {
-			slideshowWrapper.click();
+			galleryWrapper.click();
 		});
-		// end slideshow markup and controls
+		// end gallery markup and controls
 
 		// give all image thumbnails click event handlers
 		images = $( '.photo-thumbs' ).find( 'img' );
@@ -50,11 +50,11 @@ var slideshow = {
 					}
 					thisSlide.click(function(e){
 						e.stopPropagation();
-						slideshow.doSlide( 'next' );
+						gallery.doSlide( 'next' );
 					});
 				});
-				slideshowWrapper.append( slides );
-				slideshowWrapper.css('display', '-webkit-box');
+				galleryWrapper.append( slides );
+				galleryWrapper.css('display', '-webkit-box');
 			});
 		});
 	},

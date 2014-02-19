@@ -1,4 +1,4 @@
-#slideshow-wrapper{
+#gallery-wrapper{
 	position: absolute;
 	text-align: center;
 	top: 0;
@@ -12,7 +12,7 @@
 	-webkit-box-orient: vertical;
 	-webkit-box-pack: center;
 }
-#slideshow-wrapper img{
+#gallery-wrapper img{
 	max-width: 100%;
 	max-height: 100%;
 	cursor: pointer;
@@ -88,7 +88,7 @@
 	border-bottom: 800px solid transparent;
 	border-right: 800px solid #fff;
 }
-#slideshow-close{
+#gallery-close{
 	position: absolute;
 	width: 8%;
 	text-align: center;
@@ -102,7 +102,7 @@
 	-moz-opacity: .5;
 	opacity: .5;
 }
-#slideshow-close:hover{
+#gallery-close:hover{
 	op-webkit-acity: .8;
 	op-moz-acity: .8;
 	opacity: .8;
