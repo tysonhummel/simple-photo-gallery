@@ -3,7 +3,7 @@
 <p>This lightweight package of HTML, CSS and jQuery/javascript is a quick way to implement a simple photo gallery.</p>
 
 <h2>What does it do?</h2>
-<p>It makes a viewer out of your thumbnails.</p>
+<p>It makes a simple viewer out of your thumbnails with previous and next controls and a close button.</p>
 <p>The next and previous buttons are css only and resize with the browser, no images needed.</p>
 
 <h2>Usage</h2>
