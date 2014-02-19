@@ -14,25 +14,13 @@
 			<li>There is an example in gallery.html.</li>
 		</ul>
 	</li>
-	<li>Include the jQuery, Bootstrap, gallery files.
+	<li>Include the jQuery, Bootstrap and gallery files.
 		<ul>
-			<li>jQuery
-				<ul>
-					<li>jquery-2.0.3.min.js
-				</ul>
-			</li>
-			<li>Bootstrap
-				<ul>
-					<li>boostrap.min.css</li>
-					<li>boostrap.min.js</li>
-				</ul>
-			</li>
-			<li>Gallery
-				<ul>
-					<li>gallery.css</li>
-					<li>gallery.js</li>
-				</ul>
-			</li>
+			<li>jquery-2.0.3.min.js</li>
+			<li>boostrap.min.css</li>
+			<li>boostrap.min.js</li>
+			<li>gallery.css</li>
+			<li>gallery.js</li>
 		</ul>
 	</li>
 	<li><strong>Done.</strong></li>
