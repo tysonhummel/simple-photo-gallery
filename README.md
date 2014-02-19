@@ -9,9 +9,11 @@
 <h2>Usage</h2>
 <ol>
 	<li>Put your images inside a div with an class of "photo-thumbs". You can have multiple galleries on a page. There is an example in gallery.html.</li>
-	<li>Include gallery.js.</li>
+	<li>Include jQuery, Bootstrap, gallery.css and gallery.js.</li>
 	<li>Done.</li>
 </ol>
+
+<p>Currently, it uses the same image for the thumbnails and the single image view. I realize that this can be a problem if you have a lot of images. Maybe I'll fix that in the future.</p>
 
 <p>This is a no-frills situation. You'll have to add your own bells and whistles.</p>
 
