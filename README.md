@@ -1,4 +1,4 @@
-<h1>Simple Gallery</h1>
+<h1>Simple Photo Gallery</h1>
 
 <p>This lightweight package of HTML, CSS and jQuery/javascript is a quick way to implement a simple photo gallery.</p>
 
