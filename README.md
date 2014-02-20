@@ -11,16 +11,16 @@
 	<li><strong>Put your images inside a div with a class of "photo-thumbs".</strong>
 		<ul>
 			<li>You can have multiple galleries on a page.</li>
-			<li>There is an example in gallery.html.</li>
+			<li>There is an example in gallery.html that utilizes Bootstrap.</li>
 		</ul>
 	</li>
-	<li><strong>Include the jQuery, Bootstrap and gallery files.</strong>
+	<li><strong>Include the jQuery, and gallery files.  Bootstrap provides responsiveness and is optional.</strong>
 		<ul>
 			<li>jquery-2.0.3.min.js</li>
-			<li>boostrap.min.js</li>
-			<li>boostrap.min.css</li>
 			<li>gallery.js</li>
 			<li>gallery.css</li>
+			<li>boostrap.min.js (optional)</li>
+			<li>boostrap.min.css (optional)</li>
 		</ul>
 	</li>
 	<li><strong>Done.</strong></li>
