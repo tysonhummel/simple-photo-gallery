@@ -14,7 +14,7 @@
 			<li>There is an example in gallery.html that utilizes Bootstrap.</li>
 		</ul>
 	</li>
-	<li><strong>Include the jQuery, and gallery files.  Bootstrap provides responsiveness and is optional.</strong>
+	<li><strong>Include the jQuery and gallery files.  Bootstrap provides responsiveness and is optional.</strong>
 		<ul>
 			<li>jquery-2.0.3.min.js</li>
 			<li>gallery.js</li>
