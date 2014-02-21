@@ -11,7 +11,7 @@
 	<li><strong>Put your images inside a div with a class of "photo-thumbs".</strong>
 		<ul>
 			<li>You can have multiple galleries on a page.</li>
-			<li>There is an example in gallery.html that utilizes Bootstrap.</li>
+			<li>There is an example in <a href="http://tysonhummel.com/simple-photo-gallery/gallery.html" target="_blank">gallery.html</a> that utilizes Bootstrap.</li>
 		</ul>
 	</li>
 	<li><strong>Include the jQuery and gallery files.  Bootstrap provides responsiveness and is optional.</strong>
