@@ -51,19 +51,18 @@ var gallery = {
 					console.log( 'using thumbs' );
 					// if using thumnails, create slides from full size images
 					slideThumbs = me.closest( '.photo-thumbs' ).find( 'img');
-					// make temp div for slides
-					$( 'body' ).append( '<div id="thumbTemp"></div>' );
-					$.each( slideThumbs, function( index ){
-						$( '#thumbTemp' ).append( '<img src="' + $( slideThumbs[index] ).attr( 'src' ).replace( '-thumb', '' ) + '" />' );
+					slides = slideThumbs.clone()
+					$.each( slides, function( index ){
+						$( this ).attr( 'src', $( this ).attr( 'src' ).replace( '-thumb', '' ) );
 					});
-					// make slides object from images in #thumbTemp
-					slides = $( '#thumbTemp' ).find( 'img' ).clone();
-					// remove temp
-					$( '#thumbTemp' ).remove();
+					// slides = slides;
+					console.log( slides );
+
 				}else{
 					console.log( 'NOT using thumbs' );
 					// if not using actual thumbnails, gather images in this set and clone them
 					slides = me.closest( '.photo-thumbs' ).find( 'img' ).clone();
+					console.log( slides );
 				}
 
 				// give each image some functionality
