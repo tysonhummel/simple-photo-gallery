@@ -12,7 +12,7 @@ var gallery = {
 			galleryWrapper.click(function(){
 				$( this ).find( 'img' ).remove();
 				$( this ).hide();
-				console.log('hiding');
+				console.log('close image viewer');
 			});
 			// add markup for the next and previous buttons
 			galleryWrapper.append( '<div id="prev-slide" data-title="Previous Image" data-placement="right"><div class="triangle-left"></div></div><div id="next-slide" data-title="Next Image" data-placement="left"><div class="triangle-right"></div></div>' );
@@ -44,26 +44,45 @@ var gallery = {
 		images = $( '.photo-thumbs' ).find( 'img' ); // find all images in photo-thumbs
 		$.each( images, function(){
 			var me = $( this );
-			// on click
+			// on "thumbnail" click
 			me.on( 'click', function() {
-				// gather images in this set and clone them for the viewer
-				slides = me.closest( '.photo-thumbs' ).find( 'img').clone();
+				// check if using actual thumbnails
+				if( me.closest( '.photo-thumbs' ).find( 'img').first().attr( 'src' ).indexOf( '-thumb' ) >= 0 ) {
+					console.log( 'using thumbs' );
+					// if using thumnails, create slides from full size images
+					slideThumbs = me.closest( '.photo-thumbs' ).find( 'img');
+					// make temp div for slides
+					$( 'body' ).append( '<div id="thumbTemp"></div>' );
+					$.each( slideThumbs, function( index ){
+						$( '#thumbTemp' ).append( '<img src="' + $( slideThumbs[index] ).attr( 'src' ).replace( '-thumb', '' ) + '" />' );
+					});
+					// make slides object from images in #thumbTemp
+					slides = $( '#thumbTemp' ).find( 'img' ).clone();
+					// remove temp
+					$( '#thumbTemp' ).remove();
+				}else{
+					console.log( 'NOT using thumbs' );
+					// if not using actual thumbnails, gather images in this set and clone them
+					slides = me.closest( '.photo-thumbs' ).find( 'img' ).clone();
+				}
+
+				// give each image some functionality
 				$.each( slides, function( index ){
 					var thisSlide = $( this );
 					// hide each cloned image as we iterate through them
 					thisSlide.hide();
 					// show the one that was clicked
-					if( thisSlide.attr( 'src' ) === me.attr( 'src' ) ){
+					if( thisSlide.attr( 'src' ) === me.attr( 'src' ).replace( '-thumb', '' ) ){
 						currentSlide = index;
 						thisSlide.show();
 					}
-					// give cloned image nextSlide functionality on click
+					// give image nextSlide functionality on click
 					thisSlide.click(function(e){
 						e.stopPropagation();
 						gallery.doSlide( 'next' );
 					});
 				});
-				// add all cloned images to the gallery-wrapper
+				// add all images to the gallery-wrapper
 				galleryWrapper.prepend( slides );
 				// show viewer | display:-webkit-box allows for vertical alignment of contents
 				galleryWrapper.css('display', '-webkit-box');

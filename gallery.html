@@ -18,8 +18,16 @@
 </head>
 
 <style>
-    img{max-width: 100%;cursor: pointer;}
-    .row{margin-bottom: 20px;}
+    img{
+        max-width: 100%;
+        cursor: pointer;
+    }
+    .photo-thumbs img{
+        margin: 10px 0 5px;
+    }
+    .row{
+        margin-bottom: 20px;
+    }
 </style>
 
 <body>
@@ -37,18 +45,21 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Gallery 1</h2>
+                <h2>Gallery 1 <small>: using full size images as "thumbnails" (3 images)</small></h2>
             </div>
             <!-- Start gallery markup -->
             <div class="photo-thumbs">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <img src="img/image-1.jpg" />
+                    <span>src="img/image-1.jpg"</span>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <img src="img/image-2.jpg" />
+                    <span>src="img/image-2.jpg"</span>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <img src="img/image-3.jpg" />
+                    <span>src="img/image-3.jpg"</span>
                 </div>
             </div>
             <!-- end gallery markup -->
@@ -56,18 +67,24 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Gallery 2</h2>
+                <h2>Gallery 2 <small>: to use actual thumbnails, just add "-thumb" to your thumbnail image file names (6 images)</small></h2>
             </div>
             <!-- Start gallery markup -->
             <div class="photo-thumbs">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <img src="img/image-4.jpg" />
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                    <img src="img/image-4-thumb.jpg" />
+                    <span>thumb src="img/image-4-thumb.jpg"<br /></span>
+                    <span>image src="img/image-4.jpg"<br /></span>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <img src="img/image-5.jpg" />
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                    <img src="img/image-5-thumb.jpg" />
+                    <span>thumb src="img/image-5-thumb.jpg"<br /></span>
+                    <span>image src="img/image-5.jpg"<br /></span>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <img src="img/image-6.jpg" />
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                    <img src="img/image-6-thumb.jpg" />
+                    <span>thumb src="img/image-6-thumb.jpg"<br /></span>
+                    <span>image src="img/image-6.jpg"<br /></span>
                 </div>
             </div>
             <!-- end gallery markup -->
