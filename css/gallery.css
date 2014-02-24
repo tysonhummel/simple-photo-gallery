@@ -13,10 +13,36 @@
 	-webkit-box-pack: center;
 	display:none;
 }
+@keyframes blink {
+    0% { -webkit-opacity: .4;-moz-opacity: .4;opacity: .4; }
+    50% { -webkit-opacity: 1;-moz-opacity: 1;opacity: 1; }
+    100% { -webkit-opacity: .4;-moz-opacity: .4;opacity: .4; }
+}
+@-webkit-keyframes blink {
+    0% { -webkit-opacity: .4;-moz-opacity: .4;opacity: .4; }
+    50% { -webkit-opacity: 1;-moz-opacity: 1;opacity: 1; }
+    100% { -webkit-opacity: .4;-moz-opacity: .4;opacity: .4; }
+}
+#gallery-wrapper:after{
+	content: 'loading';
+	position: absolute;
+	color: #ccc;
+	left: 50%;
+	top: 50%;
+	margin-top: -10px;
+	margin-left: -22px;
+	z-index: 999;	
+	-webkit-animation: blink 1.5s linear infinite;
+	-moz-animation: blink 1.5s linear infinite;
+	animation: blink 1.5s linear infinite;
+}
+
 #gallery-wrapper img{
 	max-width: 100%;
 	max-height: 100%;
 	cursor: pointer;
+	position: relative;
+	z-index: 1099;
 }
 #prev-slide, 
 #next-slide{
