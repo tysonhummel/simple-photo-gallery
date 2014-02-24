@@ -55,14 +55,10 @@ var gallery = {
 					$.each( slides, function( index ){
 						$( this ).attr( 'src', $( this ).attr( 'src' ).replace( '-thumb', '' ) );
 					});
-					// slides = slides;
-					console.log( slides );
-
 				}else{
 					console.log( 'NOT using thumbs' );
 					// if not using actual thumbnails, gather images in this set and clone them
 					slides = me.closest( '.photo-thumbs' ).find( 'img' ).clone();
-					console.log( slides );
 				}
 
 				// give each image some functionality
