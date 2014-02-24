@@ -26,8 +26,8 @@
 	<li><strong>Done.</strong></li>
 </ol>
 
-<p>Currently, it uses the same image for the thumbnails and the single image view. I realize that this can be a problem if you have a lot of hi-res images. Maybe I'll fix that in the future.</p>
+<p>If you don't want to use the same image for both the thumbnails and the single image view, use the same name for your thumbnail image and add "-thumb" to the filename, and put both images in the same directory.</p>
 
-<p>This is a no-frills situation. You'll have to add your own bells and whistles.</p>
+<p><strong>Example:</strong> main image = "image-1.jpg", thumbnail image = "image-1-thumb.jpg". Use "image-1-thumb.jpg" on the page, and the script will use the large version ("image-1.jpg") in the image viewer.</p>
 
 <p>Use it, modify it, sing to it. Whatevs.</p>
