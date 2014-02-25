@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 var gallery = {
 	initialize: function() {
+		currentSlide = null;
 		// set up gallery markup and controls
 		if( $( '#gallery-wrapper' ).length === 0 ){ // make sure we don't already have a #gallery-wrapper div
 			$( 'body' ).append( '<div id="gallery-wrapper"></div>' );
@@ -13,6 +14,7 @@ var gallery = {
 				$( this ).find( 'img' ).remove();
 				$( this ).hide();
 				console.log('close image viewer');
+				currentSlide = null;
 			});
 			// add markup for the next and previous buttons
 			galleryWrapper.append( '<div id="prev-slide" data-title="Previous Image" data-placement="right"><div class="triangle-left"></div></div><div id="next-slide" data-title="Next Image" data-placement="left"><div class="triangle-right"></div></div>' );
@@ -38,6 +40,28 @@ var gallery = {
 				galleryWrapper.click();
 			});
 		}
+
+		// change slide with arrow keys
+		$( document ).keyup(function (e) {
+			console.log( event.type + ": " +  event.which );
+			// console.log( 'currentSlide = ' + currentSlide );
+			if( currentSlide != null ){
+				if (e.keyCode == 37 || e.keyCode == 40) {
+					// previous (left and down arrow key)
+					console.log( event.type + ": " +  event.which );
+					gallery.doSlide( 'prev' );
+				}
+				if (e.keyCode == 39 || e.keyCode == 38) {
+					// next (up and right arrow key)
+					console.log( event.type + ": " +  event.which );
+					gallery.doSlide( 'next' );
+				}
+				if(e.keyCode == 27){
+					// close (esc button)
+					closeSlide.click();
+				}
+			}
+		});
 		// end gallery markup and controls
 
 		// give all image thumbnails click event handlers
@@ -76,12 +100,14 @@ var gallery = {
 						e.stopPropagation();
 						gallery.doSlide( 'next' );
 					});
+
 				});
 				// add all images to the gallery-wrapper
 				galleryWrapper.prepend( slides );
 				// show viewer | display:-webkit-box allows for vertical alignment of contents
 				galleryWrapper.css('display', '-webkit-box');
 			});
+
 		});
 	},
 	doSlide: function( dir ) {
