@@ -4,8 +4,9 @@ $(document).ready(function() {
 
 var gallery = {
 	initialize: function() {
+		
 		currentSlide = null;
-		// set up gallery markup and controls
+
 		if( $( '#gallery-wrapper' ).length === 0 ){ // make sure we don't already have a #gallery-wrapper div
 			$( 'body' ).append( '<div id="gallery-wrapper"></div>' );
 			galleryWrapper = $( '#gallery-wrapper' );
@@ -41,19 +42,15 @@ var gallery = {
 			});
 		}
 
-		// change slide with arrow keys
+		// add arrow key and esc key events
 		$( document ).keyup(function (e) {
-			console.log( event.type + ": " +  event.which );
-			// console.log( 'currentSlide = ' + currentSlide );
 			if( currentSlide != null ){
 				if (e.keyCode == 37 || e.keyCode == 40) {
 					// previous (left and down arrow key)
-					console.log( event.type + ": " +  event.which );
 					gallery.doSlide( 'prev' );
 				}
 				if (e.keyCode == 39 || e.keyCode == 38) {
 					// next (up and right arrow key)
-					console.log( event.type + ": " +  event.which );
 					gallery.doSlide( 'next' );
 				}
 				if(e.keyCode == 27){
@@ -62,7 +59,6 @@ var gallery = {
 				}
 			}
 		});
-		// end gallery markup and controls
 
 		// give all image thumbnails click event handlers
 		images = $( '.photo-thumbs' ).find( 'img' ); // find all images in photo-thumbs
