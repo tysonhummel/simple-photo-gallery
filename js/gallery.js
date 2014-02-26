@@ -1,3 +1,9 @@
+/*
+Simple Photo Gallery by Tyson Hummel
+http://github.com/tysonhummel
+Free to use with no restrictions
+*/
+
 $(document).ready(function() {
   gallery.initialize();
 });
@@ -11,6 +17,7 @@ var gallery = {
       $( 'body' ).append( '<div id="gallery-wrapper"></div>' );
       galleryWrapper = $( '#gallery-wrapper' );
       galleryWrapper.hide();
+      // close the gallery and remove the images
       galleryWrapper.click(function(){
         $( this ).find( 'img' ).remove();
         $( this ).hide();
@@ -33,8 +40,9 @@ var gallery = {
       });
       // optional tooltip for nextSlide, uncomment line below to use
       // nextSlide.tooltip();
+
       // add close button
-      galleryWrapper.append( '<div id="gallery-close" data-title="Close the gallery." data-placement="left">x</div>' );
+      galleryWrapper.append( '<div id="gallery-close" data-title="Close the viewer." data-placement="left">x</div>' );
       var closeSlide = $( '#gallery-close' );
       closeSlide.tooltip();
       closeSlide.click( function() {
@@ -60,6 +68,11 @@ var gallery = {
       }
     });
 
+    // add a counter
+    galleryWrapper.append( '<div id="gallery-counter"><span id="this-slide"></span> of <span id="total-slides"></span></div>' );
+    thisCounter = $( '#this-slide' );
+    thisTotal = $( '#total-slides' );
+
     // give all image thumbnails click event handlers
     images = $( '.photo-thumbs' ).find( 'img' ); // find all images in photo-thumbs
     $.each( images, function(){
@@ -81,15 +94,24 @@ var gallery = {
           slides = me.closest( '.photo-thumbs' ).find( 'img' ).clone();
         }
 
-        // give each image some functionality
+        // populate counter total
+        thisTotal.html( slides.length );
+        console.log( "total slides = " + thisTotal.html() );
+
+        // give each image in the viewer some functionality
         $.each( slides, function( index ){
           var thisSlide = $( this );
           // hide each cloned image as we iterate through them
           thisSlide.hide();
-          // show the one that was clicked
+          // show the one that was clicked, make sure it's not a thumbnail
           if( thisSlide.attr( 'src' ) === me.attr( 'src' ).replace( '-thumb', '' ) ){
             currentSlide = index;
+            // initial populate counter current
+            thisCounter.html( currentSlide + 1 );
+            console.log( "this slide = " + thisCounter.html() );
+            // show this one first
             thisSlide.show();
+
           }
           // give image nextSlide functionality on click
           thisSlide.click(function(e){
@@ -98,7 +120,8 @@ var gallery = {
           });
 
         });
-        // add all images to the gallery-wrapper
+
+        // add this image and it's siblings to the gallery-wrapper
         galleryWrapper.prepend( slides );
         // show viewer | display:-webkit-box allows for vertical alignment of contents
         galleryWrapper.css('display', '-webkit-box');
@@ -128,5 +151,10 @@ var gallery = {
     $( slides[nextSlide] ).show();
     // update the current slide number
     currentSlide = nextSlide;
+
+    // populate counter current
+    thisCounter.html( currentSlide+1 );
+    console.log( "this slide = " + thisCounter.html() );
+
   }
 }
