@@ -29,7 +29,7 @@ Free to use with no restrictions
   50% { -webkit-opacity: 1;-moz-opacity: 1;opacity: 1; }
   100% { -webkit-opacity: .4;-moz-opacity: .4;opacity: .4; }
 }
-#gallery-wrapper:after{
+#gallery-wrapper::after{
   content: 'loading';
   position: absolute;
   color: #ccc;
@@ -37,7 +37,7 @@ Free to use with no restrictions
   top: 50%;
   margin-top: -10px;
   margin-left: -22px;
-  z-index: 999; 
+  z-index: 999;
   -webkit-animation: blink 1.5s linear infinite;
   -moz-animation: blink 1.5s linear infinite;
   animation: blink 1.5s linear infinite;
@@ -50,6 +50,42 @@ Free to use with no restrictions
   position: relative;
   z-index: 1099;
 }
+#gallery-wrapper .img-wrapper{
+  position: relative;
+}
+#gallery-wrapper .caption{
+  position: absolute;
+  width: 100%;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  line-height:normal;
+  z-index: 1999;
+  padding: 10px;
+  bottom: -1px;
+  max-height: calc(100% + 1px);
+  overflow: hidden;
+  -webkit-transition: max-height 1.5s;
+  -moz-transition: max-height 1.5s;
+  transition: max-height 1.5s;
+  -webkit-transform: translate3d(0,0,0);
+}
+#gallery-wrapper .caption.opened{
+    overflow: auto;
+}
+#gallery-wrapper .caption.mini{
+  overflow: hidden;
+  max-height: 6px;
+  -webkit-transition: max-height 1s;
+  -moz-transition: max-height 1s;
+  transition: max-height 1s;
+  -webkit-transform: translate3d(0,0,0);
+}
+#gallery-wrapper .caption.mini.closed{
+  padding: 0;
+  color: black;
+  background: rgba(0, 0, 0, 1);
+}
+
 #prev-slide, 
 #next-slide{
   color: white;
@@ -76,6 +112,7 @@ Free to use with no restrictions
 #next-slide{
   right: 0;
 }
+
 #prev-slide:hover, 
 #next-slide:hover{
   -webkit-opacity: .8;
@@ -93,7 +130,7 @@ Free to use with no restrictions
 }
 .triangle-right:after{
   content: "";
-      display: block;
+  display: block;
   width: 0; 
   height: 0;
   margin-top:-800px;
@@ -121,6 +158,7 @@ Free to use with no restrictions
   border-bottom: 800px solid transparent;
   border-right: 800px solid #fff;
 }
+
 #gallery-close{
   position: absolute;
   width: 8%;
@@ -137,8 +175,8 @@ Free to use with no restrictions
   opacity: .5;
 }
 #gallery-close:hover{
-  op-webkit-acity: .8;
-  op-moz-acity: .8;
+  -webkit-opacity: .8;
+  -moz-opacity: .8;
   opacity: .8;
 }
 #gallery-counter{
@@ -151,4 +189,34 @@ Free to use with no restrictions
   margin-left: -100px;
   z-index: 9923;
   cursor: default;
+}
+
+/*no webkit*/
+.no-webkit .triangle-right,
+.no-webkit .triangle-left{
+  position: relative;
+  top: 10%;
+}
+
+
+@media (min-width: 768px){
+  #gallery-wrapper .caption{
+    font-size:1em;
+  }
+}
+@media (min-width: 992px){
+  #gallery-wrapper .caption{
+    font-size:1.4em;
+  }
+}
+@media (min-width: 1200px){
+  #gallery-wrapper .caption{
+    font-size:1.8em;
+  }
+}
+
+@media (max-width: 580px){
+  #gallery-wrapper .caption{
+    font-size:.8em;
+  }
 }

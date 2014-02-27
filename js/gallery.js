@@ -10,6 +10,19 @@ $(document).ready(function() {
 
 var gallery = {
   initialize: function() {
+
+    // find out what kind of browser we have
+    webkit = false;
+    /* Get browser */
+    isChrome = /chrome/.test(navigator.userAgent.toLowerCase());
+    /* Detect Chrome */
+    if( isChrome ){
+        /* Do something for Chrome at this point */
+        webkit = true;
+        /* Finally, if it is Chrome then jQuery thinks it's 
+           Safari so we have to tell it isn't */
+        isSafari = false;
+    }
     
     currentSlide = null;
 
@@ -79,10 +92,12 @@ var gallery = {
       var me = $( this );
       // on "thumbnail" click
       me.on( 'click', function() {
+
         // check if using actual thumbnails
         if( me.closest( '.photo-thumbs' ).find( 'img').first().attr( 'src' ).indexOf( '-thumb' ) >= 0 ) {
           console.log( 'using thumbs' );
-          // if using thumnails, create slides from full size images
+          // if using thumbnails, create slides from full size images
+          // use only the images in this group
           slideThumbs = me.closest( '.photo-thumbs' ).find( 'img');
           slides = slideThumbs.clone()
           $.each( slides, function( index ){
@@ -90,13 +105,12 @@ var gallery = {
           });
         }else{
           console.log( 'NOT using thumbs' );
-          // if not using actual thumbnails, gather images in this set and clone them
+          // if not using actual thumbnails, just gather images in this set and clone them
           slides = me.closest( '.photo-thumbs' ).find( 'img' ).clone();
         }
 
         // populate counter total
         thisTotal.html( slides.length );
-        console.log( "total slides = " + thisTotal.html() );
 
         // give each image in the viewer some functionality
         $.each( slides, function( index ){
@@ -105,13 +119,11 @@ var gallery = {
           thisSlide.hide();
           // show the one that was clicked, make sure it's not a thumbnail
           if( thisSlide.attr( 'src' ) === me.attr( 'src' ).replace( '-thumb', '' ) ){
-            currentSlide = index;
+            // set the current slide to be one less than this one
+            // since doSlide will increment +1 before it shows
+            currentSlide = index-1;
             // initial populate counter current
             thisCounter.html( currentSlide + 1 );
-            console.log( "this slide = " + thisCounter.html() );
-            // show this one first
-            thisSlide.show();
-
           }
           // give image nextSlide functionality on click
           thisSlide.click(function(e){
@@ -123,13 +135,52 @@ var gallery = {
 
         // add this image and it's siblings to the gallery-wrapper
         galleryWrapper.prepend( slides );
-        // show viewer | display:-webkit-box allows for vertical alignment of contents
-        galleryWrapper.css('display', '-webkit-box');
+
+        // show the viewer
+        if( webkit ){
+          // show viewer | display:-webkit-box allows for vertical alignment of contents
+          galleryWrapper.css('display', '-webkit-box');
+        }else{
+          galleryWrapper.addClass( 'no-webkit' );
+          galleryWrapper.css('display', 'block');
+        }
+        // show the first slide
+        gallery.doSlide( 'next' );
       });
 
     });
+
+    // give captions some functionality jazz
+    var mini = null;
+    var closed = null;
+    var opened = null;
+    $(document)
+    .on( 'mouseover', '.caption', function(e){
+      if( mini != null ){clearTimeout( mini );}
+      if( closed != null ){clearTimeout( closed );}
+      var caption = $( this );
+      if( caption.hasClass( 'mini' ) ) {
+        caption.removeClass( 'mini' );
+      }
+      if( caption.hasClass( 'closed' ) ) {
+        caption.removeClass( 'closed' );
+      }
+      if( !caption.hasClass( 'opened' ) ){
+        opened = setTimeout( function(){caption.addClass( 'opened' );}, 1000 );
+      }
+    })
+    .on( 'mouseout', '.caption', function(e) {
+      var caption = $( this );
+      clearTimeout( opened );
+      caption.removeClass( 'opened' );
+      closedClass = function(){closed = setTimeout( function() {caption.addClass( 'closed' );}, 800);}
+      mini = setTimeout( function(){caption.addClass( 'mini' );closedClass();}, 3000 );
+    });
+
+    // end initialize
   },
   doSlide: function( dir ) {
+    console.log('do slide');
     // if direction is previous
     if ( dir === 'prev' ){
       if( currentSlide === 0 ){
@@ -146,15 +197,30 @@ var gallery = {
         nextSlide = currentSlide + 1;
       }
     }
+
+    // check for caption
+    $( '.caption' ).remove();
+    if( $( slides[nextSlide] ).data( 'caption' ) != undefined ){
+      $( slides[nextSlide] ).wrap( '<div class="img-wrapper"></div>' );
+      $( slides[nextSlide] ).parent( '.img-wrapper' ).append( '<div class="caption opened">' + $( slides[nextSlide] ).data( 'caption' ) + '</div>' );
+      $( '.caption' ).click(function(e){
+        e.stopPropagation();
+      });
+    }
+    // unwrap the last image if neccessary
+    if( $( slides[currentSlide] ).parent().is( '.img-wrapper' ) ){
+      $( slides[currentSlide] ).unwrap();
+    }
+
     // hide the current slide and show the next
     $( slides[currentSlide] ).hide();
     $( slides[nextSlide] ).show();
+
     // update the current slide number
     currentSlide = nextSlide;
 
     // populate counter current
     thisCounter.html( currentSlide+1 );
-    console.log( "this slide = " + thisCounter.html() );
 
   }
 }
