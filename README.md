@@ -5,6 +5,7 @@
 <h2>What does it do?</h2>
 <p>It makes a simple viewer out of your thumbnails with previous and next controls and a close button.</p>
 <p>The next and previous buttons are css only and resize with the browser, no images needed.</p>
+<p>For captions, add data-caption="Your caption" to your image thumbnails.</p>
 
 <h2>Usage</h2>
 <ol>

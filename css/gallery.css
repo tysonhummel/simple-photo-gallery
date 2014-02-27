@@ -43,15 +43,16 @@ Free to use with no restrictions
   animation: blink 1.5s linear infinite;
 }
 
+#gallery-wrapper .img-wrapper{
+  position: relative;
+  max-height: 100%;
+}
 #gallery-wrapper img{
   max-width: 100%;
   max-height: 100%;
   cursor: pointer;
   position: relative;
   z-index: 1099;
-}
-#gallery-wrapper .img-wrapper{
-  position: relative;
 }
 #gallery-wrapper .caption{
   position: absolute;
@@ -192,6 +193,9 @@ Free to use with no restrictions
 }
 
 /*no webkit*/
+#gallery-wrapper.no-webkit::after{
+  top: 15%;
+}
 .no-webkit .triangle-right,
 .no-webkit .triangle-left{
   position: relative;
