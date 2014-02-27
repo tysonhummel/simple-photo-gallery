@@ -86,12 +86,23 @@ Free to use with no restrictions
   color: black;
   background: rgba(0, 0, 0, 1);
 }
+#gallery-wrapper .caption .close-captions{
+  position: absolute;
+  top: 0;
+  right: 3px;
+  color: #aaa;
+  cursor: pointer;
+  font-size: .7em;
+}
+#gallery-wrapper .caption .close-captions:hover{
+  color: white;
+}
 
 #prev-slide, 
 #next-slide{
   color: white;
   cursor: pointer;
-  width: 8%;
+  width: 7%;
   z-index: 99999;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -124,9 +135,9 @@ Free to use with no restrictions
   margin: 0px auto;
   width: 0px;
   height: 0px;
-  padding-top: 50%;
-  padding-bottom: 50%;
-  padding-left: 50%;
+  padding-top: 70%;
+  padding-bottom: 70%;
+  padding-left: 70%;
   overflow: hidden;
 }
 .triangle-right:after{
@@ -144,9 +155,9 @@ Free to use with no restrictions
   margin: 0px auto;
   width: 0;
   height: 0;
-  padding-top: 50%;
-  padding-bottom: 50%;
-  padding-right: 50%;
+  padding-top: 70%;
+  padding-bottom: 70%;
+  padding-right: 70%;
   overflow: hidden;
 }
 .triangle-left:after{

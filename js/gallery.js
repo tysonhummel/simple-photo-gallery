@@ -17,14 +17,12 @@ var gallery = {
     isChrome = /chrome/.test(navigator.userAgent.toLowerCase());
     /* Detect Chrome */
     if( isChrome ){
-        /* Do something for Chrome at this point */
         webkit = true;
-        /* Finally, if it is Chrome then jQuery thinks it's 
-           Safari so we have to tell it isn't */
-        isSafari = false;
     }
     
+    // start some variables
     currentSlide = null;
+    captionsState = 'open';
 
     if( $( '#gallery-wrapper' ).length === 0 ){ // make sure we don't already have a #gallery-wrapper div
       $( 'body' ).append( '<div id="gallery-wrapper"></div>' );
@@ -150,31 +148,31 @@ var gallery = {
 
     });
 
-    // give captions some functionality jazz
+    // give captions some functionality
     var mini = null;
     var closed = null;
     var opened = null;
-    $(document)
-    .on( 'mouseover', '.caption', function(e){
-      if( mini != null ){clearTimeout( mini );}
-      if( closed != null ){clearTimeout( closed );}
+    $(document).on( 'mouseover', '.caption', function(e){
       var caption = $( this );
-      if( caption.hasClass( 'mini' ) ) {
-        caption.removeClass( 'mini' );
+      if( caption.hasClass( 'can-open' ) ){
+        if( mini != null ){clearTimeout( mini );}
+        if( closed != null ){clearTimeout( closed );}
+        if( caption.hasClass( 'mini' ) ) {caption.removeClass( 'mini' );}
+        if( caption.hasClass( 'closed' ) ) {caption.removeClass( 'closed' );}
+        if( !caption.hasClass( 'opened' ) ){opened = setTimeout( function(){caption.addClass( 'opened' );}, 1000 );}
+        caption.removeClass( 'can-open' );
+        captionsState = 'open';
       }
-      if( caption.hasClass( 'closed' ) ) {
-        caption.removeClass( 'closed' );
-      }
-      if( !caption.hasClass( 'opened' ) ){
-        opened = setTimeout( function(){caption.addClass( 'opened' );}, 1000 );
-      }
-    })
-    .on( 'mouseout', '.caption', function(e) {
-      var caption = $( this );
+    });
+    // close the captions
+    $(document).on( 'mousedown', '.close-captions', function(e){
+      captionsState = 'closed';
+      var caption = $( this ).parent( '.caption' );
       clearTimeout( opened );
       caption.removeClass( 'opened' );
-      closedClass = function(){closed = setTimeout( function() {caption.addClass( 'closed' );}, 800);}
-      mini = setTimeout( function(){caption.addClass( 'mini' );closedClass();}, 3000 );
+      closedClass = function(){closed = setTimeout( function() {caption.addClass( 'closed can-open' );}, 800);}
+      caption.addClass( 'mini' );
+      closedClass();
     });
 
     // end initialize
@@ -202,10 +200,15 @@ var gallery = {
     $( '.caption' ).remove();
     if( $( slides[nextSlide] ).data( 'caption' ) != undefined ){
       $( slides[nextSlide] ).wrap( '<div class="img-wrapper"></div>' );
-      $( slides[nextSlide] ).parent( '.img-wrapper' ).append( '<div class="caption opened">' + $( slides[nextSlide] ).data( 'caption' ) + '</div>' );
+      $( slides[nextSlide] ).parent( '.img-wrapper' ).append( '<div class="caption opened">' + $( slides[nextSlide] ).data( 'caption' ) + '<div class="close-captions" data-title="Minimize captions." data-placement="left">x</div></div>' );
+      $( '.close-captions' ).tooltip();
       $( '.caption' ).click(function(e){
         e.stopPropagation();
       });
+      if( captionsState === 'closed' ){
+        console.log( 'captionsState = ' + captionsState );
+        $( '.caption' ).removeClass( 'opened' ).addClass( 'mini closed' );
+      }
     }
     // unwrap the last image if neccessary
     if( $( slides[currentSlide] ).parent().is( '.img-wrapper' ) ){
