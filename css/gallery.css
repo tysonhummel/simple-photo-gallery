@@ -69,6 +69,7 @@ Free to use with no restrictions
   -moz-transition: max-height 1.5s;
   transition: max-height 1.5s;
   -webkit-transform: translate3d(0,0,0);
+  border-radius: 0 0 5px 5px;
 }
 #gallery-wrapper .caption.opened{
     overflow: auto;
@@ -85,6 +86,7 @@ Free to use with no restrictions
   padding: 0;
   color: black;
   background: rgba(0, 0, 0, 1);
+  overflow: visible;
 }
 #gallery-wrapper .caption .close-captions{
   position: absolute;
@@ -93,9 +95,30 @@ Free to use with no restrictions
   color: #aaa;
   cursor: pointer;
   font-size: .7em;
+  line-height: .5;
 }
 #gallery-wrapper .caption .close-captions:hover{
   color: white;
+}
+#gallery-wrapper .caption.mini.closed .close-captions{
+  display: none;
+}
+#gallery-wrapper .caption.mini.closed::before{
+  content: '▾';
+  font-size: .7em;
+  color: #aaa;
+  position: absolute;
+  z-index: 8;
+  right: 2px;
+  top: -6px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+#gallery-wrapper .caption .tooltip{
+  margin-top: 7px;
 }
 
 #prev-slide, 
@@ -140,7 +163,7 @@ Free to use with no restrictions
   padding-left: 70%;
   overflow: hidden;
 }
-.triangle-right:after{
+.triangle-right::after{
   content: "";
   display: block;
   width: 0; 
@@ -160,7 +183,7 @@ Free to use with no restrictions
   padding-right: 70%;
   overflow: hidden;
 }
-.triangle-left:after{
+.triangle-left::after{
   content: "";
   display: block;
   width: 0; 

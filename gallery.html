@@ -18,16 +18,24 @@
 </head>
 
 <style>
-    img{
-        max-width: 100%;
-        cursor: pointer;
-    }
-    .photo-thumbs img{
-        margin: 10px 0 5px;
-    }
-    .row{
-        margin-bottom: 20px;
-    }
+header{
+    height: 50px;
+    background: black;
+}
+img{
+    max-width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.photo-thumbs img{
+    margin: 10px 0 5px;
+}
+.row{
+    margin-bottom: 20px;
+}
+h2{
+    margin-top: 10px;
+}
 </style>
 
 <body>
@@ -35,6 +43,9 @@
 <!-- Simple Photo Gallery by Tyson Hummel -->
 <!-- http://github.com/tysonhummel -->
 <!-- Free to use with no restrictions -->
+    <header>
+
+    </header>
 
     <div class="container">
 
@@ -44,27 +55,29 @@
                 <p>You can have multiple galleries on a single page.</p>
                 <p>This code is free to use with no restrictions. <a href="https://github.com/tysonhummel/simple-photo-gallery" target="_blank">https://github.com/tysonhummel/simple-photo-gallery</a></p>
                 <p>Click a thumbnail below to open the viewer.</p>
-                <p>For captions, add data-caption="Your caption" to your thumbnail image tags.</p>
             </div>
         </div>
+
         <hr />
+
         <div class="row">
             <div class="col-md-12">
-                <h2>Gallery 1 <small>- using full size images as "thumbnails" (3 images)</small></h2>
+                <h2>Gallery 1</h2>
+                <p>Basic example using the same large image for both the thumbnails and the viewer.</p>
             </div>
             <!-- Start gallery markup -->
             <div class="photo-thumbs">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                    <img src="img/image-1.jpg" data-caption="San Francisco Bay Bridge" />
-                    <span>src="img/image-1.jpg"</span>
+                    <img src="img/image-1.jpg" />
+                    <span>image src="img/image-1.jpg"</span>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                    <img src="img/image-2.jpg" data-caption="Foggy Morning" />
-                    <span>src="img/image-2.jpg"</span>
+                    <img src="img/image-2.jpg" />
+                    <span>image src="img/image-2.jpg"</span>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                    <img src="img/image-3.jpg" data-caption="If you want to have a really long caption, you can totally do that. You can put all kinds of letters and words in here and basically just be really verbose. Perhaps unnecessarily so. Great power is in your hands, and as such, your level of responsibility is directly proportionate." />
-                    <span>src="img/image-3.jpg"</span>
+                    <img src="img/image-3.jpg" />
+                    <span>image src="img/image-3.jpg"</span>
                 </div>
             </div>
             <!-- end gallery markup -->
@@ -72,22 +85,24 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Gallery 2 <small>- to use actual thumbnails, just add "-thumb" to your thumbnail file names (6 images)</small></h2>
+                <h2>Gallery 2</h2>
+                <p>To use smaller images for thumbnails, just add "-thumb" to your thumbnail image file names. Example: "image-thumb.jpg", then use that image on the main page.
+                    To use captions, add it like this &lt;img src="path/to/image-thumb.jpg" data-caption="Caption goes here" /&gt;.</p>
             </div>
             <!-- Start gallery markup -->
             <div class="photo-thumbs">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                    <img src="img/image-4-thumb.jpg" />
+                    <img src="img/image-4-thumb.jpg" data-caption="Propeller" />
                     <span>thumb src="img/image-4-thumb.jpg"<br /></span>
                     <span>image src="img/image-4.jpg"<br /></span>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                    <img src="img/image-5-thumb.jpg" />
+                    <img src="img/image-5-thumb.jpg" data-caption="Dragonfly" />
                     <span>thumb src="img/image-5-thumb.jpg"<br /></span>
                     <span>image src="img/image-5.jpg"<br /></span>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                    <img src="img/image-6-thumb.jpg" />
+                    <img src="img/image-6-thumb.jpg" data-caption="If you want to have a really long caption, you can totally do that. You can put all kinds of letters and words in here and basically just be really verbose. Perhaps unnecessarily so. Great power is in your hands, and as such, your level of responsibility is directly proportionate." />
                     <span>thumb src="img/image-6-thumb.jpg"<br /></span>
                     <span>image src="img/image-6.jpg"<br /></span>
                 </div>
@@ -98,7 +113,6 @@
     </div>
 
     <script src="js/jquery-2.0.3.min.js"></script>
-    <!--script src="js/jquery-1.11.0.min.js"></script-->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/gallery.js"></script>
 

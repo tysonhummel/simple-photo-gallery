@@ -148,33 +148,6 @@ var gallery = {
 
     });
 
-    // give captions some functionality
-    var mini = null;
-    var closed = null;
-    var opened = null;
-    $(document).on( 'mouseover', '.caption', function(e){
-      var caption = $( this );
-      if( caption.hasClass( 'can-open' ) ){
-        if( mini != null ){clearTimeout( mini );}
-        if( closed != null ){clearTimeout( closed );}
-        if( caption.hasClass( 'mini' ) ) {caption.removeClass( 'mini' );}
-        if( caption.hasClass( 'closed' ) ) {caption.removeClass( 'closed' );}
-        if( !caption.hasClass( 'opened' ) ){opened = setTimeout( function(){caption.addClass( 'opened' );}, 1000 );}
-        caption.removeClass( 'can-open' );
-        captionsState = 'open';
-      }
-    });
-    // close the captions
-    $(document).on( 'mousedown', '.close-captions', function(e){
-      captionsState = 'closed';
-      var caption = $( this ).parent( '.caption' );
-      clearTimeout( opened );
-      caption.removeClass( 'opened' );
-      closedClass = function(){closed = setTimeout( function() {caption.addClass( 'closed can-open' );}, 800);}
-      caption.addClass( 'mini' );
-      closedClass();
-    });
-
     // end initialize
   },
   doSlide: function( dir ) {
@@ -196,20 +169,47 @@ var gallery = {
       }
     }
 
-    // check for caption
+    // check currentSlide caption and remove it before switching images
     $( '.caption' ).remove();
+
+    // add caption to next slide if it has one
     if( $( slides[nextSlide] ).data( 'caption' ) != undefined ){
       $( slides[nextSlide] ).wrap( '<div class="img-wrapper"></div>' );
-      $( slides[nextSlide] ).parent( '.img-wrapper' ).append( '<div class="caption opened">' + $( slides[nextSlide] ).data( 'caption' ) + '<div class="close-captions" data-title="Minimize captions." data-placement="left">x</div></div>' );
-      $( '.close-captions' ).tooltip();
-      $( '.caption' ).click(function(e){
-        e.stopPropagation();
-      });
+      $( slides[nextSlide] ).parent( '.img-wrapper' ).append( '<div class="caption opened">' + $( slides[nextSlide] ).data( 'caption' ) + '<div class="close-captions" data-title="Minimize captions." data-placement="left">▾</div></div>' );
       if( captionsState === 'closed' ){
         console.log( 'captionsState = ' + captionsState );
-        $( '.caption' ).removeClass( 'opened' ).addClass( 'mini closed' );
+        $( '.caption' ).removeClass( 'opened' ).addClass( 'mini closed can-open' );
       }
+
+      // add some functionality to the caption
+      var thisCaption = $( slides[nextSlide] ).parent().find( '.caption' );
+      var mini = null;
+      var closed = null;
+      var opened = null;
+      thisCaption.mouseenter(function(e){
+        var caption = $( this );
+        if( caption.hasClass( 'can-open' ) ){
+          if( mini != null ){clearTimeout( mini );}
+          if( closed != null ){clearTimeout( closed );}
+          if( caption.hasClass( 'mini' ) ) {caption.removeClass( 'mini' );}
+          if( caption.hasClass( 'closed' ) ) {caption.removeClass( 'closed' );}
+          if( !caption.hasClass( 'opened' ) ){opened = setTimeout( function(){caption.addClass( 'opened' );}, 1000 );}
+          caption.removeClass( 'can-open' );
+          captionsState = 'open';
+        }
+      }).click(function(e){
+        e.stopPropagation();
+        var caption = $( this );
+        clearTimeout( opened );
+        if(caption.hasClass( 'opened' )){caption.removeClass( 'opened' );}
+        caption.addClass( 'mini' );
+        closedClass = function(){closed = setTimeout( function() {caption.addClass( 'closed' ).addClass( 'can-open' );}, 800);}
+        closedClass();
+        captionsState = 'closed';
+      }).tooltip();
+
     }
+
     // unwrap the last image if neccessary
     if( $( slides[currentSlide] ).parent().is( '.img-wrapper' ) ){
       $( slides[currentSlide] ).unwrap();
@@ -222,8 +222,8 @@ var gallery = {
     // update the current slide number
     currentSlide = nextSlide;
 
-    // populate counter current
+    // populate counter with current slide number
     thisCounter.html( currentSlide+1 );
-
   }
+
 }
