@@ -197,17 +197,18 @@ var gallery = {
           caption.removeClass( 'can-open' );
           captionsState = 'open';
         }
-      }).click(function(e){
+      })
+      var thisCaptionClosed = thisCaption.find( '.close-captions' )
+      thisCaptionClosed.click(function(e){
         e.stopPropagation();
-        var caption = $( this );
+        var caption = $( this ).parent( '.caption');
         clearTimeout( opened );
         if(caption.hasClass( 'opened' )){caption.removeClass( 'opened' );}
         caption.addClass( 'mini' );
         closedClass = function(){closed = setTimeout( function() {caption.addClass( 'closed' ).addClass( 'can-open' );}, 800);}
         closedClass();
         captionsState = 'closed';
-      });
-      thisCaption.find( '.close-captions' ).tooltip()
+      }).tooltip();
     }
 
     // unwrap the last image if neccessary

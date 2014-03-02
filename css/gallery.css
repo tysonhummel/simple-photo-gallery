@@ -86,7 +86,7 @@ Free to use with no restrictions
   padding: 0;
   color: black;
   background: rgba(0, 0, 0, 1);
-  overflow: visible;
+  overflow: hidden;
 }
 #gallery-wrapper .caption .close-captions{
 position: absolute;
