@@ -206,8 +206,8 @@ var gallery = {
         closedClass = function(){closed = setTimeout( function() {caption.addClass( 'closed' ).addClass( 'can-open' );}, 800);}
         closedClass();
         captionsState = 'closed';
-      }).tooltip();
-
+      });
+      thisCaption.find( '.close-captions' ).tooltip()
     }
 
     // unwrap the last image if neccessary
