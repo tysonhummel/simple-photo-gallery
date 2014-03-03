@@ -1,6 +1,6 @@
 <h1>Simple Photo Gallery</h1>
 
-<p>This lightweight package of HTML, CSS and jQuery/javascript is a quick way to implement a simple, bare-bones photo gallery.</p>
+<p>This lightweight package of HTML, CSS and jQuery is a quick way to implement a simple, bare-bones photo gallery.</p>
 
 <h2>What does it do?</h2>
 <p>It makes a viewer out of your thumbnails and includes previous and next controls and a close button, as well as optional captions.</p>
