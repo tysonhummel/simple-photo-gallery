@@ -13,7 +13,7 @@
 			<li>There is an example in <a href="http://tysonhummel.com/simple-photo-gallery/" target="_blank">gallery.html</a> that utilizes Bootstrap.</li>
 		</ul>
 	</li>
-	<li><strong>Include the jQuery and gallery files.  Bootstrap.js is for the tooltips and bootstrap.css provides responsiveness and is optional.</strong>
+	<li><strong>Include the jQuery and gallery files.</strong><br /> Bootstrap.js is for the tooltips, bootstrap.css provides responsiveness and is optional.
 		<ul>
 			<li>jquery-2.0.3.min.js</li>
 			<li>gallery.js</li>
