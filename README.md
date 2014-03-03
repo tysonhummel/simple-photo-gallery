@@ -4,7 +4,6 @@
 
 <h2>What does it do?</h2>
 <p>It makes a viewer out of your thumbnails and includes previous and next controls and a close button, as well as optional captions.</p>
-<p>The next and previous buttons are css only and resize with the browser, no images needed.</p>
 
 <h2>Usage</h2>
 <ol>
@@ -30,4 +29,4 @@
 
 <p><strong>Example:</strong> main image = "image.jpg", thumbnail image = "image-thumb.jpg". Use "image-thumb.jpg" on the page, and the script will use the large version ("image.jpg") in the image viewer.</p>
 
-<p>For captions, add data-caption="Your caption" to your thumbnail image tags.</p>
+<p>For captions, add data-caption="Your caption" to your thumbnail image tags like this <img src="/path/to/image-thumb" data-caption="Image caption goes here." />.</p>
