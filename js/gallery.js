@@ -15,8 +15,9 @@ var gallery = {
     webkit = false;
     /* Get browser */
     isChrome = /chrome/.test(navigator.userAgent.toLowerCase());
+    isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
     /* Detect Chrome */
-    if( isChrome ){
+    if( isChrome || isSafari ){
         webkit = true;
     }
     
@@ -31,6 +32,7 @@ var gallery = {
       // close the gallery and remove the images
       galleryWrapper.click(function(){
         $( this ).find( 'img' ).remove();
+        $( this ).find( '.img-wrapper-outer-wrapper' ).remove();
         $( this ).hide();
         console.log('close image viewer');
         currentSlide = null;
@@ -174,7 +176,7 @@ var gallery = {
 
     // add caption to next slide if it has one
     if( $( slides[nextSlide] ).data( 'caption' ) != undefined ){
-      $( slides[nextSlide] ).wrap( '<div class="img-wrapper"></div>' );
+      $( slides[nextSlide] ).wrap( '<div class="img-wrapper-outer-wrapper"><div class="img-wrapper-outer"><div class="img-wrapper"></div></div></div>' );
       $( slides[nextSlide] ).parent( '.img-wrapper' ).append( '<div class="caption opened">' + $( slides[nextSlide] ).data( 'caption' ) + '<div class="close-captions" data-title="Minimize captions." data-placement="left">▾</div></div>' );
       if( captionsState === 'closed' ){
         console.log( 'captionsState = ' + captionsState );
@@ -213,6 +215,8 @@ var gallery = {
 
     // unwrap the last image if neccessary
     if( $( slides[currentSlide] ).parent().is( '.img-wrapper' ) ){
+      $( slides[currentSlide] ).parent().parent().unwrap();
+      $( slides[currentSlide] ).parent().unwrap();
       $( slides[currentSlide] ).unwrap();
     }
 
