@@ -13,12 +13,12 @@
 			<li>There is an example in <a href="http://tysonhummel.com/simple-photo-gallery/" target="_blank">gallery.html</a> that utilizes Bootstrap.</li>
 		</ul>
 	</li>
-	<li><strong>Include the jQuery and gallery files.  Bootstrap provides responsiveness and is optional.</strong>
+	<li><strong>Include the jQuery and gallery files.  Bootstrap.js is for the tooltips and bootstrap.css provides responsiveness and is optional.</strong>
 		<ul>
 			<li>jquery-2.0.3.min.js</li>
 			<li>gallery.js</li>
 			<li>gallery.css</li>
-			<li>boostrap.min.js (optional)</li>
+			<li>boostrap.min.js</li>
 			<li>boostrap.min.css (optional)</li>
 		</ul>
 	</li>
@@ -29,4 +29,4 @@
 
 <p><strong>Example:</strong> main image = "image.jpg", thumbnail image = "image-thumb.jpg". Use "image-thumb.jpg" on the page, and the script will use the large version ("image.jpg") in the image viewer.</p>
 
-<p>For captions, add data-caption="Your caption" to your thumbnail image tags like this <img src="/path/to/image-thumb" data-caption="Image caption goes here." />.</p>
+<p>For captions, add data-caption="Your caption" to your thumbnail image tags like this &lt;img src="/path/to/image-thumb" data-caption="Image caption goes here." /&gt;.</p>
