@@ -25,8 +25,8 @@
 	<li><strong>Done.</strong></li>
 </ol>
 
-<p>If you don't want to use the same large images for both the thumbnails and the single image view, add "-thumb" to your small versions filename, and put both images in the same directory.</p>
+<p>If you don't want to use the same large images for both the thumbnails and the single image view, add "-thumb" to your small image's filename, and put both images in the same directory.</p>
 
-<p><strong>Example:</strong> main image = "image.jpg", thumbnail image = "image-thumb.jpg". Use "image-thumb.jpg" on the page, and the script will use the large version ("image.jpg") in the image viewer.</p>
+<ul><li><strong>Example:</strong> main image = "image.jpg", thumbnail image = "image-thumb.jpg". Use "image-thumb.jpg" on the page, and the script will use the large version ("image.jpg") in the image viewer.</li></ul>
 
 <p>For captions, add data-caption="Your caption" to your thumbnail image tags like this &lt;img src="/path/to/image-thumb" data-caption="Image caption goes here." /&gt;.</p>
